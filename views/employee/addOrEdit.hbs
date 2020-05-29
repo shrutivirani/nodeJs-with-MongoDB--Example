@@ -1,0 +1,25 @@
+<h3>{{ViewTitle}}</h3>
+
+<form autocomplete="off" action="/employee" method="POST">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" name="fullName" placeholder="Enter Full Name">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter Email">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Mobile</label>
+            <input type="text" class="form-control" name="mobile" placeholder="Enter Mobile">
+        </div>
+        <div class="form-group col-md-6">
+            <label>City</label>
+            <input type="text" class="form-control" name="city" placeholder="Enter city">
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info" type="submit">Submit</button>
+    </div>
+</form>
