@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 
 function insertRecord(req,res){
     var employee = new Employee();
-    employee.fullName = req.body.FullName;
+    employee.fullName = req.body.fullName;
     employee.email = req.body.email;
     employee.mobile = req.body.mobile;
     employee.city = req.body.city;
@@ -26,9 +26,35 @@ function insertRecord(req,res){
             console.log(res.body);
         }
         else {
-            console.log("error during insert data" +err);
+            if(err.name = "ValidationError"){
+                // console.log("error isss " +err);
+                handleValidationError(err, req.body);
+                res.render("employee/addOrEdit", {
+                    viewTitle: "insert Employee",
+                    employee: req.body
+                });
+            }
+            else{
+                console.log("error during insert data" +err);
+            }
+
         }
     });
+}
+
+function  handleValidationError(err, body){
+    for(field in err.errors){
+        switch (err.errors[field].path) {
+            case 'fullName' :
+                body['fullNameError'] = err.errors[field].message;
+                break;
+            case 'email' :
+                body['emailError'] = err.errors[field].message;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 router.get('/list', (req,res) => {

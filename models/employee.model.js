@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
     fullName: {
-        type:String
+        type:String,
+        required: "This field is required"
     },
     email: {
         type:String
@@ -14,5 +15,11 @@ const employeeSchema = new mongoose.Schema({
         type:String
     }
 });
+
+//custom validation for an email
+employeeSchema.path('email').validate((val) => {
+    emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return emailRegex.test(val);
+}, "Invalid email");
 
 mongoose.model('Employee', employeeSchema);
