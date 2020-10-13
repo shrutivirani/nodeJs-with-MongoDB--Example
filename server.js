@@ -7,7 +7,7 @@ const bodyparser = require('body-parser');
 
 const employeeController = require('./controllers/employeeController');
 
-var app = express();
+var app = express(); // to start express
 
 app.use(bodyparser.urlencoded({
     extended:true
@@ -20,8 +20,8 @@ app.engine('hbs', exphbs({ extname:'hbs', defaultLayout: 'mainLayout',
 app.set('view engine', 'hbs');
 
 
-app.listen(3000, () => {
-    console.log('Express server started with port:3000');
-});
+app.listen(4000, () => {
+    console.log('Express server started with port:4000');
+}); // to call express on 4000 port
 
 app.use('/employee', employeeController);

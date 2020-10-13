@@ -22,4 +22,10 @@ employeeSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, "Invalid email");
 
+// custom validation of mobile
+employeeSchema.path('mobile').validate((val) => {
+    mobileRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+    return mobileRegex.test(val);
+}, "invalid mobile");
+
 mongoose.model('Employee', employeeSchema);
